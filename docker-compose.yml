@@ -2,18 +2,22 @@ version: '3.8'
 
 services:
   rabbitmq:
-    image: rabbitmq:3.9-management
+    image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-      - '8883:8883'     # MQTT over SSL/TLS (MQTTS)
-      - '15671:15671'   # Management UI over SSL/TLS
-      - '15676:15676'   # Web MQTT over SSL/TLS
+      - "5672:5672"
+      - "15672:15672"
+      - "8883:8883"
+      - "15676:15676"
+      - "15671:15671"
     volumes:
-      - './rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf'
-      - './enabled_plugins:/etc/rabbitmq/enabled_plugins'
-      - './certs:/etc/rabbitmq/certs'   # Mount certificates
+      - ./certs:/etc/rabbitmq/certs
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     environment:
-      RABBITMQ_ERLANG_COOKIE: 'mysecretcookie'
-      RABBITMQ_DEFAULT_USER: 'mqtt_user'
-      RABBITMQ_DEFAULT_PASS: 'mqtt_password'
-    restart: always
+      RABBITMQ_DEFAULT_USER: your_username
+      RABBITMQ_DEFAULT_PASS: your_password
+    command: rabbitmq-server
+
+volumes:
+  certs:
+    driver: local
