@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 
 // MQTT over SSL
 const mqttOptions = {
-  host: '137.184.37.155',
+  host: 'mstcontrol.com',
   port: 8883,
   protocol: 'mqtts',
   username: 'your_username',
@@ -33,10 +33,10 @@ mqttClient.on('error', (error) => {
 
 // // Web MQTT over WebSockets
 // const webMqttOptions = {
-//   host: 'dev.mstcontrol.com',
+//   host: 'mstcontrol.com',
 //   port: 443,
 //   protocol: 'wss',
-//   path: '/web_mqtt',
+//   path: '/ws',
 //   username: 'your_username',
 //   password: 'your_password',
 //   rejectUnauthorized: false, // This is needed if you are using self-signed certificates
